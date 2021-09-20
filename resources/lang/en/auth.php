@@ -15,6 +15,10 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
+    'token_expired' => 'Token is expired',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
+    'token_invalid' => 'Token is invalid',
+    'token_not_found' => 'Token not found',
+    'user_logout' => 'User logged out successfully',
+    'user_registered' => 'User registered successfully.',
 ];

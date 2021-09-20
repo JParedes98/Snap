@@ -10,4 +10,12 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * @param $e
+     * @return mixed
+     */
+    public function log_exception($e) {
+        return $e;
+    }
 }
