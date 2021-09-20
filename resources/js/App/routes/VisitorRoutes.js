@@ -1,5 +1,4 @@
 const routes = [
-    // PORTAL ROUTES
     {
         path: "/app",
         meta: { module: 'app' },

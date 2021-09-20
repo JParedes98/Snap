@@ -39,7 +39,7 @@ var SweetAlertMixin = {
                 toast: true,
                 icon: 'warning',
                 title: '¡Ups!',
-                text: 'Form input validation failed, Please field all the data properly.',
+                text: 'Form input validation failed.',
                 position: "bottom-end",
                 showConfirmButton: false,
                 timer: 5000,
