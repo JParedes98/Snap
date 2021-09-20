@@ -1,10 +1,10 @@
 <template>
-
+<h1>Files Index</h1>
 </template>
 
 <script>
 export default {
-    name: "VisitorsNavbar.vu3e"
+    name: "FilesIndex"
 }
 </script>
 

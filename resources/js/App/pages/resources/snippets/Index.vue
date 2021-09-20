@@ -1,10 +1,10 @@
 <template>
-<h1>Admin welcome view</h1>
+<h1>Snippets Index</h1>
 </template>
 
 <script>
 export default {
-    name: "Welcome"
+    name: "SnippetsIndex"
 }
 </script>
 

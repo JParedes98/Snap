@@ -5,14 +5,14 @@ import store from './Store';
 Vue.use(VueRouter);
 
 import Redirects from './routes/Redirects';
-import Auth from './routes/Auth';
-import VisitorRoutes from './routes/VisitorRoutes';
-import AdminRoutes from './routes/AdminRoutes';
+import AuthRoutes from './routes/AuthRoutes';
+import AppRoutes from './routes/AppRoutes';
 
 const empty_routes = [];
-const routes = empty_routes.concat(Redirects, Auth, VisitorRoutes, AdminRoutes);
+const routes = empty_routes.concat(Redirects, AuthRoutes, AppRoutes);
 const router = new VueRouter({
-    routes
+    // mode: 'history',
+    routes: routes,
 });
 
 

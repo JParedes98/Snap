@@ -1,10 +1,10 @@
 <template>
-<h1>Visitors Welcome</h1>
+<h1>Links Index</h1>
 </template>
 
 <script>
 export default {
-    name: "Welcome"
+    name: "LinksIndex"
 }
 </script>
 
