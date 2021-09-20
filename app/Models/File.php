@@ -24,6 +24,10 @@ class File extends Model
     ];
 
 //    RELATIONSHIPS
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function owner() {
         return $this->belongsTo('App\Models\User');
     }
