@@ -3,13 +3,16 @@ import Vuex from 'vuex';
 
 // STORE IMPORTS
 import UsersStore from "./store/Users";
+import LinksStore from "./store/Links";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
     modules: {
-        'users': UsersStore
+        'users': UsersStore,
+        'links': LinksStore
     },
+
     state: {
         loader_is_active: false,
     },

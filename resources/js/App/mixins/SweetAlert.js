@@ -1,7 +1,7 @@
 var SweetAlertMixin = {
     methods: {
         ShowMessagePopUp(options) {
-            let icon    = options.icon  ? options.icon  : 'error';
+            let icon    = options.icon  ? options.icon  : '';
             let title   = options.title ? options.title : '';
             let text    = options.text  ? options.text  : '';
             let timer   = options.timer ? options.timer : 4000;

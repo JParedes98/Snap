@@ -10,7 +10,7 @@
 
 
 <script>
-import Navbar from '../components/navs/Navbar';
+import Navbar from '../components/Navbar';
 
 export default {
     components: {

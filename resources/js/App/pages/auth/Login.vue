@@ -28,12 +28,6 @@
                         <div class="form-group mt-3">
                             <b-button variant="primary" class="font-weight-bold" pill block type="submit">LOGIN</b-button>
                         </div>
-
-                        <div class="form-group my-3">
-                            <p class="card-text font-weight-bold text-muted text-center">
-                                <router-link to="forgot-password" tag="a" class="text-primary text-decoration-none">Forgot Password?</router-link>
-                            </p>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -82,15 +76,16 @@ export default {
                     password: this.user.password
                 }
 
-                this.$store.dispatch('users/login', user)
+                this.$store.dispatch('login', user)
                     .then(() => {
                         this.$router.push('/app');
                         this.$store.dispatch('show_hide_loader');
                     })
                     .catch((error) => {
                         this.ShowMessagePopUp({
+                            icon: 'error ',
                             title: 'Ups, something went wrong.',
-                            error: error.response.data.message,
+                            text: error.response.data.message,
                         });
                         this.$store.dispatch('show_hide_loader');
                     });

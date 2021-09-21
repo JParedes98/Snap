@@ -44,7 +44,6 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     // RELATIONSHIPS
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

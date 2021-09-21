@@ -17,12 +17,12 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
-    let auth_user = store.getters['users/user_is_authenticated'];
-    let token_expiration = store.getters['users/token_expiration'];
+    let auth_user = store.getters['user_is_authenticated'];
+    let token_expiration = store.getters['token_expiration'];
 
     let session_time = Math.abs(new Date() - new Date(token_expiration)) / 36e5;
     if (session_time > 1) {
-        store.dispatch('users/logout')
+        store.dispatch('logout')
             .then(() => {
                 next({ name: 'login' })
             });

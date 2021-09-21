@@ -16,7 +16,7 @@ class CreateLinksTables extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->id();
             $table->string('title', 125);
-            $table->string('url', 1000);
+            $table->string('url');
             $table->boolean('open_in_new_tab', true);
             $table->boolean('is_private', true);
             $table->unsignedBigInteger('user_id');

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Link;
 
 class PublicController extends Controller
 {
-    public function GetAllLinks(){}
+    public function GetAllLinks(){
+        $links = Link::all();
+        return response()->json($links, 200);
+    }
 
     public function GetAllFiles(){}
 

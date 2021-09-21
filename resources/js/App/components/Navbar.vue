@@ -21,10 +21,14 @@
 
                     <b-nav-item-dropdown right>
                         <template #button-content>
-                            <i class="fas fa-user"></i>&nbsp;Account
+                            <i class="fas fa-envelope-open-text"></i>&nbsp;{{ user.name ? user.name : 'Account' }}
                         </template>
                         <b-dropdown-item @click="Logout">
                             <i class="fas fa-sign-out-alt"></i>&nbsp;Sign Out
+                        </b-dropdown-item>
+                        <b-dropdown-divider v-if="user.email"></b-dropdown-divider>
+                        <b-dropdown-item v-if="user.email" disabled>
+                            <small class="text-center">{{ user.email }}</small>
                         </b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-navbar-nav>
@@ -34,28 +38,30 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
     name: "Navbar.vue",
     methods: {
         Logout() {
-            this.$store.dispatch('users/logout')
+            this.$store.dispatch('logout')
                 .then( () => {
                     this.$router.push('/login')
                 })
                 .catch((error) => {
                     this.ShowMessagePopUp({
+                        icon: 'error',
                         title: 'Ups, something went wrong.',
                         text: error.response.data.message
                     });
                 });
         },
     },
-
     computed: {
-        user () {
-            return this.$store.getters.user;
-        },
-    }
+        ...mapState({
+            user: state => state.users.user,
+        }),
+    },
 }
 </script>
 

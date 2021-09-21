@@ -109,6 +109,7 @@ export default {
                     })
                     .catch((error) => {
                         this.ShowMessagePopUp({
+                            icon: 'error',
                             title: 'Ups, something went wrong.',
                             error: error.response.data.message,
                         });
