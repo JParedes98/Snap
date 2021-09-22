@@ -7,10 +7,11 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Traits\LinksCRUDTrait;
 use App\Traits\SnippetsCRUDTrait;
+use App\Traits\FilesCRUDTrait;
 
 class AdminController extends Controller
 {
-    use LinksCRUDTrait, SnippetsCRUDTrait;
+    use LinksCRUDTrait, SnippetsCRUDTrait, FilesCRUDTrait;
 
     /**
      * AdminController instance secutiry middlewares.
@@ -59,6 +60,10 @@ class AdminController extends Controller
                 $responseData = [];
 
                 switch ($resource) {
+                    case 'files':
+                        $responseData = $this->storeFile($request, $user);
+                        break;
+
                     case 'snippets':
                         $responseData = $this->createSnippet($request, $user);
                         break;
@@ -88,6 +93,10 @@ class AdminController extends Controller
                 $responseData = [];
 
                 switch ($resource) {
+                    case 'files':
+                        $responseData = $this->updateFile($request, $user, $id);
+                        break;
+
                     case 'snippets':
                         $responseData = $this->updateSnippet($request, $user, $id);
                         break;
@@ -112,6 +121,10 @@ class AdminController extends Controller
                 $responseData = [];
 
                 switch ($resource) {
+                    case 'files':
+                        $responseData = $this->deleteFile($user, $id);
+                        break;
+
                     case 'snippets':
                         $responseData = $this->deleteSnippet($user, $id);
                         break;
@@ -135,6 +148,14 @@ class AdminController extends Controller
         $validationRules = [];
 
         switch ($resource) {
+            case 'files':
+                $validationRules = [
+                    'title'           => 'required|string|max:125',
+                    'pdf'             => 'required|file|mimes:pdf|max:5120',
+                    'is_private'      => 'sometimes|boolean|nullable'
+                ];
+                break;
+
             case 'snippets':
                 $validationRules = [
                     'title'           => 'required|string|max:125',

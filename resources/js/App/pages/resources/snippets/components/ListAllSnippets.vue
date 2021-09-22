@@ -31,6 +31,9 @@
                     <b-button @click="previewSnippet(data.item)" variant="primary" v-b-tooltip.hover title="Open Snippet" size="sm" class="d-inline-block">
                         <i class="far fa-eye"></i>
                     </b-button>
+                    <b-button @click="copyToClipboard(data.item)" variant="info" v-b-tooltip.hover title="Copy Snippet" size="sm" class="d-inline-block">
+                        <i class="far fa-copy"></i>
+                    </b-button>
                     <b-button @click="updateSnippet(data.item)" variant="info" v-b-tooltip.hover title="Update Snippet" size="sm" class="d-inline-block">
                         <i class="fas fa-pencil-alt"></i>
                     </b-button>
@@ -46,6 +49,8 @@
                 :total-rows="total"
                 :per-page="perPage">
             </b-pagination>
+
+            <copy-component ref="copyComponent"></copy-component>
         </div>
 
         <div v-else>
@@ -58,9 +63,13 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import copyToClipboard from "../../../../components/CopyToClipboard";
 
 export default {
     name: "ListAllSnippets",
+    components: {
+        'copy-component': copyToClipboard
+    },
     data() {
         return {
             currentPage: 1,
@@ -95,6 +104,9 @@ export default {
         previewSnippet(snippet) {
             this.$emit('previewSnippet', snippet);
         },
+        copyToClipboard(snippet) {
+            this.$refs.copyComponent.copyToClipboard(snippet.html);
+        }
     }
 }
 </script>

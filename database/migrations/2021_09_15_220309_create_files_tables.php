@@ -17,6 +17,7 @@ class CreateFilesTables extends Migration
             $table->id();
             $table->string('title', 125);
             $table->string('name', 500);
+            $table->string('location')->unique();
             $table->string('size', 25);
             $table->string('mime', 25);
             $table->boolean('is_private', true);

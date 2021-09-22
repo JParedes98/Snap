@@ -24,6 +24,7 @@ class FileFactory extends Factory
         return [
             'title'     => $this->faker->sentence(3),
             'name'      => $this->faker->sentence(3),
+            'location'  => $this->faker->sentence(2),
             'size'      => random_int(0, 25) * 1000,
             'mime'      => 'application/pdf',
             'is_private'=> random_int(0, 1),

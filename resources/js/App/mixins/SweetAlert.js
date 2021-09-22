@@ -27,7 +27,7 @@ var SweetAlertMixin = {
                 icon: icon,
                 title: title,
                 text: text,
-                position: "bottom-end",
+                position: "top-end",
                 showConfirmButton: false,
                 timer: timer,
                 timerProgressBar: true,
