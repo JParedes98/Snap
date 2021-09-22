@@ -26,9 +26,8 @@ Route::group([ 'prefix' => 'auth' ], function () {
 });
 
 //PUBLIC RESOURCES ROUTES
-Route::get('/GetAllLinks',              [ PublicController::class, 'GetAllLinks'    ]);
-Route::get('/GetAllFiles',              [ PublicController::class, 'GetAllFiles'    ]);
-Route::get('/GetAllSnippets',           [ PublicController::class, 'GetAllSnippets' ]);
+Route::get('/{resource}',               [ PublicController::class, 'GetResource'    ]);
+Route::post('/download',                [ PublicController::class, 'DownloadFIle'   ]);
 
 //ADMIN RESOURCES ROUTES
 Route::group([ 'prefix' => 'admin' ], function () {

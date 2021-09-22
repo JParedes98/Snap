@@ -27,6 +27,10 @@
 
                         <div class="form-group mt-3">
                             <b-button variant="primary" class="font-weight-bold" pill block type="submit">LOGIN</b-button>
+                            <br>
+                            <b-button :to="{ name: 'website_files' }" variant="dark" class="font-weight-bold" pill block type="button">
+                                GO TO WEBSITE
+                            </b-button>
                         </div>
                     </form>
                 </div>

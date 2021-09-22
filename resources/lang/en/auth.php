@@ -21,4 +21,5 @@ return [
     'token_not_found' => 'Token not found',
     'user_logout' => 'User logged out successfully',
     'user_registered' => 'User registered successfully.',
+    'resource_not_available' => 'Resource not available.'
 ];

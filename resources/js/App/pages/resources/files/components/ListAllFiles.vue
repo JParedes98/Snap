@@ -28,9 +28,16 @@
                 </template>
 
                 <template v-slot:cell(options)="data">
-                    <b-button @click="downloadFile(data.item)" variant="primary" v-b-tooltip.hover title="Download File" size="sm" class="d-inline-block">
-                        <i class="fas fa-download"></i>
-                    </b-button>
+                    <form action="/api/download" target="_blank" method="POST" class="m-o p-0 d-inline">
+                        <input type="hidden" name="token" :value="token">
+                        <input type="hidden" name="fileId" :value="data.item.id">
+                        <input type="hidden" name="fileName" :value="data.item.location">
+
+                        <b-button size="sm" type="submit" class="d-inline-block" variant="primary" v-b-tooltip.hover title="Download File">
+                            <i class="fas fa-download"></i>
+                        </b-button>
+                    </form>
+
                     <b-button @click="updateFile(data.item)" variant="info" v-b-tooltip.hover title="Update File" size="sm" class="d-inline-block">
                         <i class="fas fa-pencil-alt"></i>
                     </b-button>
@@ -83,6 +90,9 @@ export default {
         total() {
             return this.files.length
         },
+        token() {
+            return this.$store.getters.token;
+        },
     },
     methods: {
         ...mapActions([
@@ -91,9 +101,6 @@ export default {
         ]),
         updateFile(file) {
             this.$emit('setFileToUpdate', file);
-        },
-        downloadFile(file) {
-            alert('open file')
         },
     }
 }

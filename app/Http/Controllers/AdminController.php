@@ -48,6 +48,11 @@ class AdminController extends Controller
         return response()->json($data, 200);
     }
 
+    /**
+     * @param Request $request
+     * @param $resource
+     * @return \Illuminate\Http\JsonResponse|mixed
+     */
     public function StoreResource(Request $request, $resource) {
         $validation = $this->validateRequest($request, $resource);
         if($validation['errors']) {
@@ -81,6 +86,12 @@ class AdminController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $resource
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse|mixed
+     */
     public function UpdateResource(Request $request, $resource, $id) {
         $validation = $this->validateRequest($request, $resource);
         if($validation['errors']) {
@@ -114,6 +125,11 @@ class AdminController extends Controller
         }
     }
 
+    /**
+     * @param $resource
+     * @param $id
+     * @return mixed
+     */
     public function DeleteResource($resource, $id) {
         try {
             return DB::transaction(function () use ($resource, $id) {
@@ -143,7 +159,11 @@ class AdminController extends Controller
     }
 
 
-
+    /**
+     * @param $request
+     * @param $resource
+     * @return array
+     */
     private function validateRequest($request, $resource) {
         $validationRules = [];
 

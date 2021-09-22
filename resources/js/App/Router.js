@@ -7,11 +7,12 @@ Vue.use(VueRouter);
 import Redirects from './routes/Redirects';
 import AuthRoutes from './routes/AuthRoutes';
 import AppRoutes from './routes/AppRoutes';
+import AppWebsiteRoutes from './routes/AppWebsiteRoutes';
+
 
 const empty_routes = [];
-const routes = empty_routes.concat(Redirects, AuthRoutes, AppRoutes);
+const routes = empty_routes.concat(Redirects, AuthRoutes, AppRoutes, AppWebsiteRoutes);
 const router = new VueRouter({
-    // mode: 'history',
     routes: routes,
 });
 
