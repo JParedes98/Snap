@@ -9,13 +9,13 @@
     <meta name="title" content="Snap App">
     <meta name="author" content="Jose Francisco Paredes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="{{ asset('/favicon.png') }}">
+    <link rel="icon" type="image/png" href="/favicon.png">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- STYLES -->
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 
     <!-- Scripts -->
     <script src="https://kit.fontawesome.com/67ee180fdd.js"></script>
-    <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>
