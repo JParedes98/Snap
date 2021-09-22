@@ -24,11 +24,18 @@
             <div class="col-md-4 col-xl-4">
                 <div class="card bg-c-blue custom-card">
                     <div class="card-block">
-                        <h6 class="m-b-20">Files Stored</h6>
-                        <h2 class="text-right"><i class="far fa-file-alt float-left"></i><span>486</span></h2>
-                        <b-link :to="{ name: 'files' }" class="m-b-0 text-white">
-                            View All<span class="float-right"><i class="fas fa-chevron-right"></i></span>
-                        </b-link>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-block">
+                                <h6 class="m-b-20">Files Stored</h6>
+                                <b-link :to="{ name: 'files' }" class="m-b-0 text-white">
+                                    View All&nbsp;<i class="fas fa-chevron-right"></i>
+                                </b-link>
+                            </div>
+
+                            <h2 class="text-right">
+                                <i class="far fa-file-alt float-left"></i>
+                            </h2>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -36,11 +43,18 @@
             <div class="col-md-4 col-xl-4">
                 <div class="card bg-c-green custom-card">
                     <div class="card-block">
-                        <h6 class="m-b-20">Snipets Created</h6>
-                        <h2 class="text-right"><i class="fas fa-code float-left"></i><span>486</span></h2>
-                        <b-link :to="{ name: 'snippets' }" class="m-b-0 text-white">
-                            View All<span class="float-right"><i class="fas fa-chevron-right"></i></span>
-                        </b-link>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-block">
+                                <h6 class="m-b-20">Snippets Stored</h6>
+                                <b-link :to="{ name: 'snippets' }" class="m-b-0 text-white">
+                                    View All&nbsp;<i class="fas fa-chevron-right"></i>
+                                </b-link>
+                            </div>
+
+                            <h2 class="text-right">
+                                <i class="fas fa-code float-left"></i>
+                            </h2>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,11 +62,18 @@
             <div class="col-md-4 col-xl-4">
                 <div class="card bg-c-yellow custom-card">
                     <div class="card-block">
-                        <h6 class="m-b-20">Links Stored</h6>
-                        <h2 class="text-right"><i class="fas fa-link float-left"></i><span>486</span></h2>
-                        <b-link :to="{ name: 'links' }" class="m-b-0 text-white">
-                            View All<span class="float-right"><i class="fas fa-chevron-right"></i></span>
-                        </b-link>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-block">
+                                <h6 class="m-b-20">Links Stored</h6>
+                                <b-link :to="{ name: 'snippets' }" class="m-b-0 text-white">
+                                    View All&nbsp;<i class="fas fa-chevron-right"></i>
+                                </b-link>
+                            </div>
+
+                            <h2 class="text-right">
+                                <i class="fas fa-link float-left"></i>
+                            </h2>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,7 +118,7 @@ export default {
     padding: 25px;
 }
 
-.custom-card i {
-    font-size: 26px;
-}
+/*.custom-card i {*/
+/*    font-size: 26px;*/
+/*}*/
 </style>
