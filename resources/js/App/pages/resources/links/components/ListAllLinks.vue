@@ -2,8 +2,8 @@
 <div>
     <div class="table-responsive" v-if="links.length > 0">
         <b-table
-            id="users_table"
-            ref="users_table"
+            id="links_table"
+            ref="links_table"
             striped
             hover
             fixed
@@ -78,6 +78,7 @@ export default {
             currentPage: 1,
             perPage: 10,
             fields: [
+                { key: 'id',                label: 'ID',                sortable: true  },
                 { key: 'title',             label: 'Title',             sortable: true  },
                 { key: 'url',               label: 'Link URL',          sortable: true  },
                 { key: 'open_in_new_tab',   label: 'Open in New Tab',   sortable: true  },

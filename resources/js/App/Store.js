@@ -4,13 +4,15 @@ import Vuex from 'vuex';
 // STORE IMPORTS
 import UsersStore from "./store/Users";
 import LinksStore from "./store/Links";
+import SnippetsStore from "./store/Snippets";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
     modules: {
         'users': UsersStore,
-        'links': LinksStore
+        'links': LinksStore,
+        'snippets': SnippetsStore
     },
 
     state: {

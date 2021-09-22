@@ -31,7 +31,6 @@
 <script>
 import ListAllLinks from './components/ListAllLinks.vue'
 import CreateUpdateLink from './components/CreateUpdateLink.vue'
-import {mapState} from "vuex";
 
 export default {
     name: "LinksIndex",

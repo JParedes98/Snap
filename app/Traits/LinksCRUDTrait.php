@@ -16,8 +16,8 @@ trait LinksCRUDTrait {
         return Link::create([
             'title'             => $request->title,
             'url'               => $request->url,
-            'is_private'        => $request->isPrivate ? true : false,
-            'open_in_new_tab'   => $request->openNewTab ? true : false,
+            'is_private'        => $request->isPrivate,
+            'open_in_new_tab'   => $request->openNewTab,
             'user_id'           => $user->id
         ]);
     }
@@ -32,8 +32,8 @@ trait LinksCRUDTrait {
         return Link::where('id', $linkId)->where('user_id', $user->id)->firstOrFail()->update([
             'title'             => $request->title,
             'url'               => $request->url,
-            'is_private'        => $request->isPrivate ? true : false,
-            'open_in_new_tab'   => $request->openNewTab ? true : false,
+            'is_private'        => $request->isPrivate,
+            'open_in_new_tab'   => $request->openNewTab,
         ]);
     }
 

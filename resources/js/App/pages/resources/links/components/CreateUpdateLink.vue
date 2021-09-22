@@ -28,7 +28,7 @@
     </div>
 
     <div class="formg-group my-3">
-        <label class="switch" v-b-tooltip.hover title="When clicked this link should be opened in new tab ?">
+        <label class="switch" v-b-tooltip.hover title="Should this Link be public accessible?">
             <input v-model="link.isPrivate" type="checkbox" :checked="link.isPrivate">
             <span class="slider round"></span>
         </label>

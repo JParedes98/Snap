@@ -6,10 +6,11 @@ use DB;
 use Validator;
 use Illuminate\Http\Request;
 use App\Traits\LinksCRUDTrait;
+use App\Traits\SnippetsCRUDTrait;
 
 class AdminController extends Controller
 {
-    use LinksCRUDTrait;
+    use LinksCRUDTrait, SnippetsCRUDTrait;
 
     /**
      * AdminController instance secutiry middlewares.
@@ -58,6 +59,10 @@ class AdminController extends Controller
                 $responseData = [];
 
                 switch ($resource) {
+                    case 'snippets':
+                        $responseData = $this->createSnippet($request, $user);
+                        break;
+
                     case 'links':
                         $responseData = $this->createLink($request, $user);
                         break;
@@ -83,6 +88,10 @@ class AdminController extends Controller
                 $responseData = [];
 
                 switch ($resource) {
+                    case 'snippets':
+                        $responseData = $this->updateSnippet($request, $user, $id);
+                        break;
+
                     case 'links':
                         $responseData = $this->updateLink($request, $user, $id);
                         break;
@@ -103,6 +112,10 @@ class AdminController extends Controller
                 $responseData = [];
 
                 switch ($resource) {
+                    case 'snippets':
+                        $responseData = $this->deleteSnippet($user, $id);
+                        break;
+
                     case 'links':
                         $responseData = $this->deleteLink($user, $id);
                         break;
@@ -122,6 +135,15 @@ class AdminController extends Controller
         $validationRules = [];
 
         switch ($resource) {
+            case 'snippets':
+                $validationRules = [
+                    'title'           => 'required|string|max:125',
+                    'description'     => 'required|string|max:500',
+                    'html'            => 'required|string',
+                    'is_private'      => 'sometimes|boolean|nullable'
+                ];
+                break;
+
             case 'links':
                 $validationRules = [
                     'title'           => 'required|string|max:125',
@@ -131,7 +153,6 @@ class AdminController extends Controller
                 ];
                 break;
         }
-
 
         $validation = Validator::make($request->all(), $validationRules);
         $response = array();

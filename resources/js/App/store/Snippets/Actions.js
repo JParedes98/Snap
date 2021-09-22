@@ -1,9 +1,9 @@
 export default {
-    async getLinksList({ commit }) {
+    async getSnippetsList({ commit }) {
         commit('show_hide_loader');
-        await axios.get('/api/admin/links')
+        await axios.get('/api/admin/snippets')
             .then( res => {
-                commit('setLinksList', res.data);
+                commit('setSnippetsList', res.data);
                 commit('show_hide_loader');
             })
             .catch(error => {
@@ -11,20 +11,20 @@ export default {
                 commit('show_hide_loader');
             })
     },
-    async createUpdateLink({ state, commit, dispatch }) {
+    async createUpdateSnippet({ state, commit, dispatch }) {
         commit('show_hide_loader');
 
-        let reqUrl           = state.link.id ? '/api/admin/links/' + state.link.id : '/api/admin/links';
-        let reqType          = state.link.id ? 'PUT' : 'POST';
-        let successMessage   = state.link.id ? 'Link created successfully.' : 'Link updated successfully';
+        let reqUrl           = state.snippet.id ? '/api/admin/snippets/' + state.snippet.id : '/api/admin/snippets';
+        let reqType          = state.snippet.id ? 'PUT' : 'POST';
+        let successMessage   = state.snippet.id ? 'Snippet created successfully.' : 'Snippet updated successfully';
 
         await axios({
                 method: reqType,
                 url: reqUrl,
-                data: state.link
+                data: state.snippet
             })
             .then( res => {
-                dispatch('getLinksList');
+                dispatch('getSnippetsList');
                 this.ShowMessagePopUp({
                     icon: 'success',
                     title: 'Awesome!',
@@ -37,11 +37,11 @@ export default {
                 commit('show_hide_loader');
             })
     },
-    async deleteLink({ commit, dispatch }, link) {
+    async deleteSnippet({ commit, dispatch }, snippet) {
         commit('show_hide_loader');
-        await axios.delete(`/api/admin/links/${link.id}`)
+        await axios.delete(`/api/admin/snippets/${snippet.id}`)
             .then( res => {
-                dispatch('getLinksList');
+                dispatch('getSnippetsList');
                 commit('show_hide_loader');
             })
             .catch(error => {
