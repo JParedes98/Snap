@@ -90,10 +90,27 @@ export default {
             'setFileObject'
         ]),
         async submitForm() {
-            var validation = await this.$validate();
+            let validation = await this.$validate();
 
             if(validation) {
-                await this.createUpdateFile();
+                await this.createUpdateFile()
+                    .then(res => {
+                        this.ShowMessagePopUp({
+                            icon: 'success',
+                            title: 'Great',
+                            text: 'File stored successfully'
+                        });
+                        this.$emit('FileClose');
+                    })
+                    .catch(error => {
+                        this.ShowSnackBar({
+                            icon: 'error',
+                            title: 'Ups, something went wrong',
+                            text: error.response.data.message
+                        });
+                    })
+            } else {
+                this.FormValidationFailed();
             }
         }
     }

@@ -37,7 +37,7 @@
                     <b-button @click="updateSnippet(data.item)" variant="info" v-b-tooltip.hover title="Update Snippet" size="sm" class="d-inline-block">
                         <i class="fas fa-pencil-alt"></i>
                     </b-button>
-                    <b-button @click="deleteSnippet(data.item)" variant="danger" v-b-tooltip.hover title="Delete Snippet" size="sm" class="d-inline-block">
+                    <b-button @click="confirmDelete(data.item)" variant="danger" v-b-tooltip.hover title="Delete Snippet" size="sm" class="d-inline-block">
                         <i class="far fa-trash-alt"></i>
                     </b-button>
                 </template>
@@ -84,6 +84,16 @@ export default {
     },
     created() {
         this.getSnippetsList()
+            .then(res => {
+                console.log(res)
+            })
+            .catch(error => {
+                this.ShowSnackBar({
+                    icon: 'error',
+                    title: 'Ups, something went wrong',
+                    text: error.response.data.message
+                })
+            })
     },
     computed: {
         ...mapState({
@@ -101,12 +111,40 @@ export default {
         updateSnippet(snippet) {
             this.$emit('setSnippetToUpdate', snippet);
         },
+        async confirmDelete(snippet) {
+            let confirmation = await Vue.swal({
+                icon: "warning",
+                title: "Are you sure?",
+                text: "Do you want to delete this snippet?",
+                confirmButtonText: "Delete!",
+                showCancelButton: true,
+                cancelButtonColor: "#d33",
+                cancelButtonText: "Cancel",
+            });
+            if (confirmation.isConfirmed) {
+                this.deleteSnippet(snippet)
+                    .then(res => {
+                        this.ShowMessagePopUp({
+                            icon: 'success',
+                            title: 'Great',
+                            text: 'Snippet deleted successfully'
+                        })
+                    })
+                    .catch(error => {
+                        this.ShowSnackBar({
+                            icon: 'error',
+                            title: 'Ups, something went wrong',
+                            text: error.response.data.message
+                        })
+                    })
+            }
+        },
         previewSnippet(snippet) {
             this.$emit('previewSnippet', snippet);
         },
         copyToClipboard(snippet) {
             this.$refs.copyComponent.copyToClipboard(snippet.html);
-        }
+        },
     }
 }
 </script>

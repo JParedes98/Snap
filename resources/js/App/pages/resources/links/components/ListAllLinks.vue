@@ -46,7 +46,7 @@
                 <b-button @click="updateLink(data.item)" variant="info" v-b-tooltip.hover title="Update Link" size="sm" class="d-inline-block">
                     <i class="fas fa-pencil-alt"></i>
                 </b-button>
-                <b-button @click="deleteLink(data.item)" variant="danger" v-b-tooltip.hover title="Delete Link" size="sm" class="d-inline-block">
+                <b-button @click="confirmDelete(data.item)" variant="danger" v-b-tooltip.hover title="Delete Link" size="sm" class="d-inline-block">
                     <i class="far fa-trash-alt"></i>
                 </b-button>
             </template>
@@ -89,6 +89,16 @@ export default {
     },
     created() {
         this.getLinksList()
+            .then(res => {
+                console.log(res);
+            })
+            .catch(error => {
+                this.ShowSnackBar({
+                    icon: 'error',
+                    title: 'Ups, something went wrong',
+                    text: error.response.data.message
+                })
+            })
     },
     computed: {
         ...mapState({
@@ -103,6 +113,34 @@ export default {
             'getLinksList',
             'deleteLink'
         ]),
+        async confirmDelete(link) {
+            let confirmation = await Vue.swal({
+                icon: "warning",
+                title: "Are you sure?",
+                text: "Do you sure you want to delete this link?",
+                confirmButtonText: "Delete!",
+                showCancelButton: true,
+                cancelButtonColor: "#d33",
+                cancelButtonText: "Cancel",
+            });
+            if (confirmation.isConfirmed) {
+                this.deleteLink(link)
+                    .then(res => {
+                        this.ShowMessagePopUp({
+                            icon: 'success',
+                            title: 'Great',
+                            text: 'Link deleted successfully'
+                        })
+                    })
+                    .catch(error => {
+                        this.ShowSnackBar({
+                            icon: 'error',
+                            title: 'Ups, something went wrong',
+                            text: error.response.data.message
+                        })
+                    })
+            }
+        },
         updateLink(link) {
             this.$emit('setLinkToUpdate', link);
         },

@@ -7,5 +7,12 @@ export default {
         state.file.id            = file.id;
         state.file.title         = file.title;
         state.file.isPrivate     = file.is_private;
+    },
+
+    resetFile(state) {
+        state.file.id            = '';
+        state.file.title         = '';
+        state.file.pdf           = null;
+        state.file.isPrivate     = false;
     }
 }

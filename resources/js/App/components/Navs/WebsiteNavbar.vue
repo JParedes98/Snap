@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar toggleable="lg" type="dark" variant="primary">
         <b-container>
             <b-navbar-brand :to="{ name: 'app' }">
                 <img src="/logo.png" alt="Snap App" class="navbar-logo">

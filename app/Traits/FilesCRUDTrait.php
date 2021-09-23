@@ -20,7 +20,7 @@ trait FilesCRUDTrait {
             'location'      => $request->pdf->store('files'),
             'size'          => $request->pdf->getSize(),
             'mime'          => $request->pdf->getMimeType(),
-            'is_private'    => $request->isPrivate,
+            'is_private'    => $request->isPrivate ? true : false,
             'user_id'       => $user->id
         ]);
     }
@@ -42,7 +42,7 @@ trait FilesCRUDTrait {
             'location'      => $request->pdf->store('files'),
             'size'          => $request->pdf->getSize(),
             'mime'          => $request->pdf->getMimeType(),
-            'is_private'    => $request->isPrivate,
+            'is_private'    => $request->isPrivate ? true : false,
             'user_id'       => $user->id
         ]);
     }

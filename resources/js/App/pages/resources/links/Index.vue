@@ -21,9 +21,11 @@
         </div>
     </div>
 
-    <b-modal id="createUpdateLink" ref="createUpdateLink" hide-header hide-footer centered size="sm">
-        <manage-link v-if="link != null" :linkProp="link"></manage-link>
-        <manage-link v-else></manage-link>
+    <b-modal id="createUpdateLink" ref="createUpdateLink" hide-header hide-footer no-close-on-esc no-close-on-backdrop centered size="sm">
+        <manage-link v-on:LinkClose="hideModal" v-if="link != null" :linkProp="link"></manage-link>
+        <manage-link v-on:LinkClose="hideModal" v-else></manage-link>
+
+        <b-button pill variant="dark" class="mt-3" block @click="hideModal">GO BACK</b-button>
     </b-modal>
 </div>
 </template>
@@ -47,6 +49,11 @@ export default {
         setLinkToUpdate(link) {
             this.link = link;
             this.$bvModal.show('createUpdateLink', link);
+        },
+        hideModal() {
+            this.link = null;
+            this.$store.commit('resetLink');
+            this.$bvModal.hide('createUpdateLink');
         }
     }
 }

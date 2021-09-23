@@ -21,9 +21,11 @@
             </div>
         </div>
 
-        <b-modal id="createUpdateFile" ref="createUpdateFile" hide-header hide-footer centered size="sm">
-            <manage-file v-if="file != null" :fileProp="file"></manage-file>
-            <manage-file v-else></manage-file>
+        <b-modal id="createUpdateFile" ref="createUpdateFile" hide-header hide-footer no-close-on-esc no-close-on-backdrop centered size="sm">
+            <manage-file v-on:FileClose="hideModal" v-if="file != null" :fileProp="file"></manage-file>
+            <manage-file v-on:FileClose="hideModal" v-else></manage-file>
+
+            <b-button pill variant="dark" class="mt-3" block @click="hideModal">GO BACK</b-button>
         </b-modal>
     </div>
 </template>
@@ -47,6 +49,11 @@ export default {
         setFileToUpdate(file) {
             this.file = file;
             this.$bvModal.show('createUpdateFile', file);
+        },
+        hideModal() {
+            this.file = null;
+            this.$store.commit('resetFile');
+            this.$bvModal.hide('createUpdateFile');
         }
     }
 }

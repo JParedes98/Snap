@@ -1,53 +1,60 @@
 export default {
-    async getSnippetsList({ commit }) {
-        commit('show_hide_loader');
-        await axios.get('/api/admin/snippets')
-            .then( res => {
-                commit('setSnippetsList', res.data);
-                commit('show_hide_loader');
-            })
-            .catch(error => {
-                console.log(error);
-                commit('show_hide_loader');
-            })
+    getSnippetsList({ commit }) {
+        return new Promise((resolve, reject) => {
+            commit('show_hide_loader');
+            axios.get('/api/admin/snippets')
+                .then( res => {
+                    commit('setSnippetsList', res.data);
+                    commit('show_hide_loader');
+                    resolve(res);
+                })
+                .catch(error => {
+                    commit('show_hide_loader');
+                    reject(error);
+                })
+        })
     },
-    async createUpdateSnippet({ state, commit, dispatch }) {
-        commit('show_hide_loader');
+    createUpdateSnippet({ state, commit, dispatch }) {
+        return new Promise((resolve, reject) => {
+            commit('show_hide_loader');
 
-        let reqUrl           = state.snippet.id ? '/api/admin/snippets/' + state.snippet.id : '/api/admin/snippets';
-        let reqType          = state.snippet.id ? 'PUT' : 'POST';
-        let successMessage   = state.snippet.id ? 'Snippet created successfully.' : 'Snippet updated successfully';
+            let reqUrl           = state.snippet.id ? '/api/admin/snippets/' + state.snippet.id : '/api/admin/snippets';
+            let reqType          = state.snippet.id ? 'PUT' : 'POST';
 
-        await axios({
+            axios({
                 method: reqType,
                 url: reqUrl,
                 data: state.snippet
             })
-            .then( res => {
-                dispatch('getSnippetsList');
-                this.ShowMessagePopUp({
-                    icon: 'success',
-                    title: 'Awesome!',
-                    text: successMessage,
-                });
-                commit('show_hide_loader');
-            })
-            .catch(error => {
-                console.log(error);
-                commit('show_hide_loader');
-            })
+                .then( res => {
+                    dispatch('getSnippetsList');
+                    dispatch('resetSnippet');
+                    commit('show_hide_loader');
+                    resolve(res);
+                })
+                .catch(error => {
+                    dispatch('resetSnippet');
+                    commit('show_hide_loader');
+                    reject(error)
+                })
+        })
     },
-    async deleteSnippet({ commit, dispatch }, snippet) {
-        commit('show_hide_loader');
-        await axios.delete(`/api/admin/snippets/${snippet.id}`)
-            .then( res => {
-                dispatch('getSnippetsList');
-                commit('show_hide_loader');
-            })
-            .catch(error => {
-                console.log(error);
-                commit('show_hide_loader');
-            })
+    deleteSnippet({ commit, dispatch }, snippet) {
+        return new Promise((resolve, reject) => {
+            commit('show_hide_loader');
+            axios.delete(`/api/admin/snippets/${snippet.id}`)
+                .then( res => {
+                    dispatch('getSnippetsList');
+                    dispatch('resetSnippet');
+                    commit('show_hide_loader');
+                    resolve(res);
+                })
+                .catch(error => {
+                    dispatch('resetSnippet');
+                    commit('show_hide_loader');
+                    reject(error);
+                })
+        })
     },
 
 }

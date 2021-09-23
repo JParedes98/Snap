@@ -103,7 +103,24 @@ export default {
             var validation = await this.$validate();
 
             if(validation) {
-                await this.createUpdateLink();
+                await this.createUpdateLink()
+                    .then(res => {
+                        this.ShowMessagePopUp({
+                            icon: 'success',
+                            title: 'Great',
+                            text: 'Link stored successfully'
+                        });
+                        this.$emit('LinkClose');
+                    })
+                    .catch(error => {
+                        this.ShowSnackBar({
+                            icon: 'error',
+                            title: 'Ups, something went wrong',
+                            text: error.response.data.message
+                        });
+                    })
+            } else {
+                this.FormValidationFailed();
             }
         }
     }

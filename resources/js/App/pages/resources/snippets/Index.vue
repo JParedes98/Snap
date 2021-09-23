@@ -22,12 +22,14 @@
             </div>
         </div>
 
-        <b-modal id="createUpdateSnippet" ref="createUpdateSnippet" hide-header hide-footer centered size="xl">
-            <manage-snippet v-if="snippet != null" :snippetProp="snippet"></manage-snippet>
-            <manage-snippet v-else></manage-snippet>
+        <b-modal id="createUpdateSnippet" ref="createUpdateSnippet" hide-header hide-footer no-close-on-esc no-close-on-backdrop centered size="md">
+            <manage-snippet v-on:SnippetClose="hideModal" v-if="snippet != null" :snippetProp="snippet"></manage-snippet>
+            <manage-snippet v-on:SnippetClose="hideModal" v-else></manage-snippet>
+
+            <b-button pill variant="dark" class="mt-3" block @click="hideModal">GO BACK</b-button>
         </b-modal>
 
-        <b-modal id="previewSnippet" ref="previewSnippet" hide-header hide-footer centered size="xl">
+        <b-modal id="previewSnippet" ref="previewSnippet" hide-header hide-footer centered size="md">
             <div class="card" v-if="snippet">
                 <div class="card-header">
                     <h5 class="text-center text-muted font-weight-bold">
@@ -67,6 +69,11 @@ export default {
         previewSnippet(snippet) {
             this.snippet = snippet;
             this.$bvModal.show('previewSnippet', snippet);
+        },
+        hideModal() {
+            this.snippet = null;
+            this.$store.commit('resetSnippet');
+            this.$bvModal.hide('createUpdateSnippet');
         }
     }
 }

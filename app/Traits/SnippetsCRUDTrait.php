@@ -17,7 +17,7 @@ trait SnippetsCRUDTrait {
             'title'         => $request->title,
             'description'   => $request->description,
             'html'          => $request->html,
-            'is_private'    => $request->isPrivate,
+            'is_private'    => $request->isPrivate ? true : false,
             'user_id'       => $user->id
         ]);
     }
@@ -33,7 +33,7 @@ trait SnippetsCRUDTrait {
             'title'         => $request->title,
             'description'   => $request->description,
             'html'          => $request->html,
-            'is_private'    => $request->isPrivate,
+            'is_private'    => $request->isPrivate ? true : false,
             'user_id'       => $user->id
         ]);
     }

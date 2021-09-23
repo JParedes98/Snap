@@ -41,7 +41,7 @@
                     <b-button @click="updateFile(data.item)" variant="info" v-b-tooltip.hover title="Update File" size="sm" class="d-inline-block">
                         <i class="fas fa-pencil-alt"></i>
                     </b-button>
-                    <b-button @click="deleteFile(data.item)" variant="danger" v-b-tooltip.hover title="Delete File" size="sm" class="d-inline-block">
+                    <b-button @click="confirmDelete(data.item)" variant="danger" v-b-tooltip.hover title="Delete File" size="sm" class="d-inline-block">
                         <i class="far fa-trash-alt"></i>
                     </b-button>
                 </template>
@@ -82,6 +82,16 @@ export default {
     },
     created() {
         this.getFilesList()
+            .then(res => {
+                console.log(res);
+            })
+            .catch(error => {
+                this.ShowSnackBar({
+                    icon: 'error',
+                    title: 'Ups, something went wrong',
+                    text: error.response.data.message
+                })
+            })
     },
     computed: {
         ...mapState({
@@ -99,6 +109,34 @@ export default {
             'getFilesList',
             'deleteFile'
         ]),
+        async confirmDelete(file) {
+            let confirmation = await Vue.swal({
+                icon: "warning",
+                title: "Are you sure?",
+                text: "Do you want to delete this file?",
+                confirmButtonText: "Delete!",
+                showCancelButton: true,
+                cancelButtonColor: "#d33",
+                cancelButtonText: "Cancel",
+            });
+            if (confirmation.isConfirmed) {
+                this.deleteFile(file)
+                    .then(res => {
+                        this.ShowMessagePopUp({
+                            icon: 'success',
+                            title: 'Great',
+                            text: 'File deleted successfully'
+                        })
+                    })
+                    .catch(error => {
+                        this.ShowSnackBar({
+                            icon: 'error',
+                            title: 'Ups, something went wrong',
+                            text: error.response.data.message
+                        })
+                    })
+            }
+        },
         updateFile(file) {
             this.$emit('setFileToUpdate', file);
         },

@@ -65,7 +65,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-block">
                                 <h6 class="m-b-20">Links Stored</h6>
-                                <b-link :to="{ name: 'snippets' }" class="m-b-0 text-white">
+                                <b-link :to="{ name: 'links' }" class="m-b-0 text-white">
                                     View All&nbsp;<i class="fas fa-chevron-right"></i>
                                 </b-link>
                             </div>

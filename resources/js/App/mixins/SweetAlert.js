@@ -40,7 +40,7 @@ var SweetAlertMixin = {
                 icon: 'warning',
                 title: '¡Ups!',
                 text: 'Form input validation failed.',
-                position: "bottom-end",
+                position: "top-end",
                 showConfirmButton: false,
                 timer: 5000,
                 timerProgressBar: true,
